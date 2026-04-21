@@ -12,6 +12,12 @@
 </head>
 <body>
 
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
   <!-- ═══ NAV ═══ -->
   <nav class="nav" id="nav" role="navigation">
     <div class="nav-inner">
@@ -49,7 +55,7 @@
     <canvas id="circuitCanvas"></canvas>
     <div class="hero-vignette"></div>
 
-    <div class="bench-ticket">
+    <div class="bench-ticket" id="benchTicket">
       <div class="ticket-perforation"></div>
       <div class="ticket-header">
         <span class="ticket-number">TKT-#8247</span>
@@ -64,24 +70,46 @@
         Most phone fixes same day. Text me — I reply in under 2 hours.
       </p>
       <div class="ticket-actions">
-        <a href="tel:2083666111" class="btn btn-primary">
+        <a href="tel:2083666111" class="btn btn-primary magnetic" data-magnetic>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Text or Call
         </a>
-        <a href="#services" class="btn btn-secondary">See Services</a>
+        <a href="#services" class="btn btn-secondary magnetic" data-magnetic>See Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section class="section section-compact" id="stats" aria-label="Statistics">
+    <div class="stats-grid">
+      <div class="stat-item reveal" style="--i:0">
+        <span class="stat-number" data-target="500" data-suffix="+">0</span>
+        <span class="stat-label">Repairs Done</span>
+      </div>
+      <div class="stat-item reveal" style="--i:1">
+        <span class="stat-number" data-target="5.0" data-decimals="1">0</span>
+        <span class="stat-label">Star Rating</span>
+      </div>
+      <div class="stat-item reveal" style="--i:2">
+        <span class="stat-number" data-target="40" data-suffix="-day">0</span>
+        <span class="stat-label">Warranty</span>
+      </div>
+      <div class="stat-item reveal" style="--i:3">
+        <span class="stat-number" data-target="2" data-suffix="hr">0</span>
+        <span class="stat-label">Response Time</span>
       </div>
     </div>
   </section>
 
   <!-- ═══ SERVICES ═══ -->
-  <section class="section" id="services" aria-labelledby="services-title">
+  <section class="section section-alt" id="services" aria-labelledby="services-title">
     <div class="section-header reveal">
       <span class="section-eyebrow">What I Fix</span>
       <h2 class="section-title" id="services-title">Repairs &amp; Computer Help</h2>
       <p class="section-sub">From cracked screens to slow computers — one person, one bench, honest work.</p>
     </div>
     <div class="services-grid">
-      <article class="service-card reveal" style="--i:0">
+      <article class="service-card reveal tilt-card" style="--i:0" data-tilt>
         <div class="service-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
         </div>
@@ -89,7 +117,7 @@
         <p class="service-card-desc">Screen, battery, charging port, buttons, water damage. Same-day for most models.</p>
         <div class="service-card-price">From $79</div>
       </article>
-      <article class="service-card reveal" style="--i:1">
+      <article class="service-card reveal tilt-card" style="--i:1" data-tilt>
         <div class="service-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
         </div>
@@ -97,7 +125,7 @@
         <p class="service-card-desc">Samsung Galaxy, Google Pixel, OnePlus. Screens, batteries, ports &amp; more.</p>
         <div class="service-card-price">From $69</div>
       </article>
-      <article class="service-card reveal" style="--i:2">
+      <article class="service-card reveal tilt-card" style="--i:2" data-tilt>
         <div class="service-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg>
         </div>
@@ -105,7 +133,7 @@
         <p class="service-card-desc">Mac &amp; Windows. Screens, keyboards, batteries, storage upgrades, virus removal.</p>
         <div class="service-card-price">From $99</div>
       </article>
-      <article class="service-card reveal" style="--i:3">
+      <article class="service-card reveal tilt-card" style="--i:3" data-tilt>
         <div class="service-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
         </div>
@@ -113,7 +141,7 @@
         <p class="service-card-desc">iPad, Galaxy Tab, Amazon Fire. Cracked screens, batteries, charging issues.</p>
         <div class="service-card-price">From $79</div>
       </article>
-      <article class="service-card reveal" style="--i:4">
+      <article class="service-card reveal tilt-card" style="--i:4" data-tilt>
         <div class="service-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M6 15h4"/><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M14 10h4m-2-2v4"/></svg>
         </div>
@@ -121,7 +149,7 @@
         <p class="service-card-desc">Switch drift, PS5 HDMI, Xbox, Steam Deck. Controller &amp; port repairs.</p>
         <div class="service-card-price">From $49</div>
       </article>
-      <article class="service-card reveal" style="--i:5">
+      <article class="service-card reveal tilt-card" style="--i:5" data-tilt>
         <div class="service-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8m-4-4v4"/></svg>
         </div>
@@ -133,7 +161,7 @@
   </section>
 
   <!-- ═══ PROCESS ═══ -->
-  <section class="section section-alt" id="process" aria-labelledby="process-title">
+  <section class="section" id="process" aria-labelledby="process-title">
     <div class="section-header reveal">
       <span class="section-eyebrow">The Process</span>
       <h2 class="section-title" id="process-title">How It Works</h2>
@@ -163,8 +191,21 @@
     </div>
   </section>
 
+  <!-- ═══ DISCOUNT CALLOUT ═══ -->
+  <section class="section section-compact" id="discount" aria-label="Discounts">
+    <div class="discount-banner reveal">
+      <div class="discount-content">
+        <div class="discount-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          15% Off
+        </div>
+        <p class="discount-text">Student &amp; Military Discount — just show your ID. No forms, no hassle.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ BENCH LOG ═══ -->
-  <section class="section" id="log" aria-labelledby="log-title">
+  <section class="section section-alt" id="log" aria-labelledby="log-title">
     <div class="section-header reveal">
       <span class="section-eyebrow">The Bench</span>
       <h2 class="section-title" id="log-title">Recent Repairs</h2>
@@ -216,6 +257,59 @@
     </div>
   </section>
 
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="section" id="testimonials" aria-labelledby="testimonials-title">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">What People Say</span>
+      <h2 class="section-title" id="testimonials-title">Real Reviews</h2>
+      <p class="section-sub">Not cherry-picked. These are actual messages I've received.</p>
+    </div>
+    <div class="testimonials-grid">
+      <blockquote class="testimonial-card reveal" style="--i:0">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Samuel fixed my iPhone screen in under an hour. Way faster and cheaper than the Apple Store. Already sent my roommate to him."</p>
+        <footer class="testimonial-author">
+          <span class="testimonial-name">Megan K.</span>
+          <span class="testimonial-meta">Hailey, ID · iPhone 13</span>
+        </footer>
+      </blockquote>
+      <blockquote class="testimonial-card reveal" style="--i:1">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"My laptop wouldn't boot after a water spill. He was honest that it might not be fixable, but got it working for way less than a replacement."</p>
+        <footer class="testimonial-author">
+          <span class="testimonial-name">James R.</span>
+          <span class="testimonial-meta">Ketchum, ID · MacBook Pro</span>
+        </footer>
+      </blockquote>
+      <blockquote class="testimonial-card reveal" style="--i:2">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Texted him at 8pm on a Sunday about my kid's iPad. He replied in 20 minutes and had it fixed Monday morning. Unreal."</p>
+        <footer class="testimonial-author">
+          <span class="testimonial-name">Sarah T.</span>
+          <span class="testimonial-meta">Sun Valley, ID · iPad Air</span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
   <!-- ═══ COMPARISON ═══ -->
   <section class="section section-alt" id="compare" aria-labelledby="compare-title">
     <div class="section-header reveal">
@@ -257,15 +351,47 @@
     </div>
   </section>
 
+  <!-- ═══ SERVICE AREA ═══ -->
+  <section class="section" id="area" aria-labelledby="area-title">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Service Area</span>
+      <h2 class="section-title" id="area-title">Wood River Valley &amp; Beyond</h2>
+      <p class="section-sub">In-person in the Valley. Mail-in anywhere in Idaho.</p>
+    </div>
+    <div class="area-grid reveal">
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 class="area-title">In-Person</h3>
+        <p class="area-desc">Hailey, Ketchum, Sun Valley, Bellevue. Drop-off or I come to you.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20M6 12h.01M6 16h.01M10 12h8M10 16h8"/></svg>
+        </div>
+        <h3 class="area-title">Mail-In</h3>
+        <p class="area-desc">Statewide Idaho. Insured shipping. Text updates the whole way. 3-5 day turnaround.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 class="area-title">Hours</h3>
+        <p class="area-desc">Mon–Fri 9am–9pm, Sat–Sun 11am–7pm. Text anytime — I reply when I'm awake.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ CTA ═══ -->
-  <section class="section" aria-label="Contact">
+  <section class="section section-alt" aria-label="Contact">
     <div class="section-header reveal">
       <span class="section-eyebrow">Get Started</span>
       <h2 class="section-title">Text Me What's Broken</h2>
       <p class="section-sub">(208) 366-6111 — I reply fast, diagnose free, and quote before I touch anything.</p>
     </div>
     <div class="text-center reveal">
-      <a href="tel:2083666111" class="btn btn-primary" style="font-size:1.1rem;padding:1rem 2rem">
+      <a href="tel:2083666111" class="btn btn-primary magnetic" data-magnetic style="font-size:1.1rem;padding:1rem 2rem">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         (208) 366-6111
       </a>
@@ -286,6 +412,11 @@
       <p class="footer-copy">© 2025 Hailey Device Repair. Hailey, Idaho. Built by hand.</p>
     </div>
   </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
 
   <script src="js/flagship.js"></script>
 </body>

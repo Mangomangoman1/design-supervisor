@@ -1,111 +1,112 @@
-// ═══ HAILEY DEVICE REPAIR — FLAGSHIP JS ═══
+// ═══ HAILEY DEVICE REPAIR — FLAGSHIP JS v2 ═══
+// Circuit traces, magnetic buttons, 3D tilt, counters, scroll progress
 
 (function() {
   'use strict';
 
-  // ─── Circuit Canvas Animation ────────────────────────────────────
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ─── Circuit Canvas — PCB Branching Traces ──────────────────────────────
   const canvas = document.getElementById('circuitCanvas');
-  if (canvas) {
+  if (canvas && !prefersReducedMotion) {
     const ctx = canvas.getContext('2d');
-    let width, height;
-    const nodes = [];
-    const NODE_COUNT = 40;
-    const CONNECTION_DIST = 180;
+    let width, height, dpr;
+    const traces = [];
+    const TRACE_COUNT = 12;
     let mouse = { x: -1000, y: -1000 };
-    let frame = 0;
 
     function resize() {
       const rect = canvas.parentElement.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    function initNodes() {
-      nodes.length = 0;
-      for (let i = 0; i < NODE_COUNT; i++) {
-        nodes.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          radius: 1.5 + Math.random() * 2,
-          pulse: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.02 + Math.random() * 0.03
-        });
+    function createTrace() {
+      const startX = Math.random() * width;
+      const startY = Math.random() * height;
+      const segments = [];
+      let x = startX, y = startY;
+      const segCount = 3 + Math.floor(Math.random() * 4);
+      
+      for (let i = 0; i < segCount; i++) {
+        const isHorizontal = Math.random() > 0.5;
+        const length = 40 + Math.random() * 120;
+        const nextX = isHorizontal ? x + (Math.random() > 0.5 ? length : -length) : x;
+        const nextY = isHorizontal ? y : y + (Math.random() > 0.5 ? length : -length);
+        
+        segments.push({ x1: x, y1: y, x2: nextX, y2: nextY });
+        
+        // Add node at junction
+        segments.push({ node: true, x: nextX, y: nextY, radius: 1.5 + Math.random() });
+        
+        x = nextX;
+        y = nextY;
+      }
+      
+      return {
+        segments: segments,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.015 + Math.random() * 0.02,
+        opacity: 0.1 + Math.random() * 0.2
+      };
+    }
+
+    function initTraces() {
+      traces.length = 0;
+      for (let i = 0; i < TRACE_COUNT; i++) {
+        traces.push(createTrace());
       }
     }
 
-    function drawCircuit() {
+    function drawTraces() {
       ctx.clearRect(0, 0, width, height);
-      frame++;
-
-      // Update nodes
-      nodes.forEach(n => {
-        n.x += n.vx;
-        n.y += n.vy;
-        n.pulse += n.pulseSpeed;
-
-        if (n.x < 0 || n.x > width) n.vx *= -1;
-        if (n.y < 0 || n.y > height) n.vy *= -1;
-      });
-
-      // Draw connections
-      ctx.strokeStyle = 'rgba(245, 158, 11, 0.12)';
-      ctx.lineWidth = 0.8;
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONNECTION_DIST) {
-            const alpha = (1 - dist / CONNECTION_DIST) * 0.15;
-            ctx.strokeStyle = `rgba(245, 158, 11, ${alpha})`;
+      
+      traces.forEach(trace => {
+        trace.pulse += trace.pulseSpeed;
+        const pulseFactor = 0.5 + 0.5 * Math.sin(trace.pulse);
+        
+        trace.segments.forEach(seg => {
+          if (seg.node) {
+            // Draw node
+            const glow = ctx.createRadialGradient(seg.x, seg.y, 0, seg.x, seg.y, seg.radius * 4);
+            glow.addColorStop(0, `rgba(245, 158, 11, ${trace.opacity * pulseFactor * 0.5})`);
+            glow.addColorStop(1, 'rgba(245, 158, 11, 0)');
+            ctx.fillStyle = glow;
             ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.arc(seg.x, seg.y, seg.radius * 4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = `rgba(245, 158, 11, ${trace.opacity * pulseFactor})`;
+            ctx.beginPath();
+            ctx.arc(seg.x, seg.y, seg.radius, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            // Draw trace line
+            ctx.strokeStyle = `rgba(245, 158, 11, ${trace.opacity * pulseFactor * 0.5})`;
+            ctx.lineWidth = 0.8;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(seg.x1, seg.y1);
+            ctx.lineTo(seg.x2, seg.y2);
             ctx.stroke();
+            
+            // Draw flowing dot on trace
+            const t = (Date.now() % 3000) / 3000;
+            const dotX = seg.x1 + (seg.x2 - seg.x1) * t;
+            const dotY = seg.y1 + (seg.y2 - seg.y1) * t;
+            ctx.fillStyle = `rgba(245, 158, 11, ${0.4 + 0.4 * pulseFactor})`;
+            ctx.beginPath();
+            ctx.arc(dotX, dotY, 1.5, 0, Math.PI * 2);
+            ctx.fill();
           }
-        }
-      }
-
-      // Draw nodes
-      nodes.forEach(n => {
-        const pulseFactor = 0.6 + 0.4 * Math.sin(n.pulse);
-        const glowSize = n.radius * 3 * pulseFactor;
-
-        // Glow
-        const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowSize);
-        grad.addColorStop(0, `rgba(245, 158, 11, ${0.3 * pulseFactor})`);
-        grad.addColorStop(1, 'rgba(245, 158, 11, 0)');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, glowSize, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Core
-        ctx.fillStyle = `rgba(245, 158, 11, ${0.5 + 0.5 * pulseFactor})`;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.radius * pulseFactor, 0, Math.PI * 2);
-        ctx.fill();
+        });
       });
-
-      // Mouse interaction — subtle pull
-      nodes.forEach(n => {
-        const dx = mouse.x - n.x;
-        const dy = mouse.y - n.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200 && dist > 0) {
-          const force = (200 - dist) / 200 * 0.02;
-          n.vx += (dx / dist) * force;
-          n.vy += (dy / dist) * force;
-        }
-      });
-
-      requestAnimationFrame(drawCircuit);
+      
+      requestAnimationFrame(drawTraces);
     }
 
     canvas.parentElement.addEventListener('mousemove', e => {
@@ -113,20 +114,16 @@
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
     });
-    canvas.parentElement.addEventListener('mouseleave', () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
-    });
 
     resize();
-    initNodes();
-    drawCircuit();
-    window.addEventListener('resize', () => { resize(); initNodes(); });
+    initTraces();
+    drawTraces();
+    window.addEventListener('resize', () => { resize(); initTraces(); });
   }
 
-  // ─── Typewriter Effect ─────────────────────────────────────────
+  // ─── Typewriter Effect ──────────────────────────────────────────────
   const typewriter = document.getElementById('typewriter');
-  if (typewriter) {
+  if (typewriter && !prefersReducedMotion) {
     const text = "Let me fix it.";
     let i = 0;
     function type() {
@@ -137,21 +134,113 @@
       }
     }
     setTimeout(type, 600);
+  } else if (typewriter) {
+    typewriter.textContent = "Let me fix it.";
   }
 
-  // ─── Scroll Reveal ────────────────────────────────────────────
-  const revealElements = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  revealElements.forEach(el => revealObserver.observe(el));
+  // ─── Scroll Progress Bar ─────────────────────────────────────────────
+  const scrollProgress = document.getElementById('scrollProgress');
+  if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgress.style.width = progress + '%';
+    }, { passive: true });
+  }
 
-  // ─── Nav Scroll Shadow ─────────────────────────────────────────
+  // ─── Scroll Reveal ─────────────────────────────────────────────────
+  const revealElements = document.querySelectorAll('.reveal');
+  if (!prefersReducedMotion) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('visible'));
+  }
+
+  // ─── Animated Counters ───────────────────────────────────────────────
+  const statNumbers = document.querySelectorAll('.stat-number');
+  if (!prefersReducedMotion) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.dataset.target);
+          const decimals = parseInt(el.dataset.decimals || '0');
+          const suffix = el.dataset.suffix || '';
+          const duration = 1500;
+          const startTime = performance.now();
+          
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+            el.textContent = current.toFixed(decimals) + suffix;
+            
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            }
+          }
+          
+          requestAnimationFrame(updateCounter);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNumbers.forEach(el => counterObserver.observe(el));
+  } else {
+    statNumbers.forEach(el => {
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals || '0');
+      const suffix = el.dataset.suffix || '';
+      el.textContent = target.toFixed(decimals) + suffix;
+    });
+  }
+
+  // ─── Magnetic Buttons ─────────────────────────────────────────────────
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('[data-magnetic]').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
+    });
+  }
+
+  // ─── 3D Card Tilt ─────────────────────────────────────────────────────────
+  if (!prefersReducedMotion && !window.matchMedia('(pointer: coarse)').matches) {
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -8;
+        const rotateY = (x - centerX) / centerX * 8;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+  }
+
+  // ─── Nav Scroll Shadow ─────────────────────────────────────────────────
   const nav = document.getElementById('nav');
   if (nav) {
     window.addEventListener('scroll', () => {
@@ -159,7 +248,7 @@
     }, { passive: true });
   }
 
-  // ─── Mobile Nav ───────────────────────────────────────────────
+  // ─── Mobile Nav ─────────────────────────────────────────────────────────
   const hamburger = document.getElementById('navHamburger');
   const mobileMenu = document.getElementById('navMobile');
   if (hamburger && mobileMenu) {
@@ -185,13 +274,27 @@
     });
   }
 
-  // ─── Smooth Scroll for Anchor Links ──────────────────────────────────
+  // ─── Back to Top ─────────────────────────────────────────────────────────
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  // ─── Smooth Scroll for Anchor Links ──────────────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ 
+          behavior: prefersReducedMotion ? 'auto' : 'smooth', 
+          block: 'start' 
+        });
       }
     });
   });

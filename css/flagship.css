@@ -1,12 +1,12 @@
 /* ═══════════════════════════════════════════════════════════
-   HAILEY DEVICE REPAIR — FLAGSHIP
+   HAILEY DEVICE REPAIR — FLAGSHIP v2
    Warm workshop aesthetic. Amber on charcoal.
    ═══════════════════════════════════════════════════════════ */
 
-/* ─── Fonts ──────────────────────────────────────────────── */
+/* ─── Fonts ───────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
-/* ─── Custom Properties ──────────────────────────────────── */
+/* ─── Custom Properties ───────────────────────────────────── */
 :root {
   --bg:          #0c0a09;
   --bg-surface:  #1a1814;
@@ -43,7 +43,7 @@
   --transition-spring: 500ms cubic-bezier(0.34,1.56,0.64,1);
 }
 
-/* ─── Reset ──────────────────────────────────────────────── */
+/* ─── Reset ───────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
@@ -60,14 +60,37 @@ img,svg{display:block;max-width:100%}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 ul{list-style:none}
 
-/* ─── Scrollbar ──────────────────────────────────────────── */
+/* ─── Scrollbar ───────────────────────────────────────────── */
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--text4);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--text3)}
 
-/* ─── Selection ──────────────────────────────────────────── */
+/* ─── Selection ───────────────────────────────────────────── */
 ::selection{background:var(--accent);color:var(--bg)}
+
+/* ─── Grain Overlay ───────────────────────────────────────── */
+.grain-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  pointer-events:none;
+  opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:200px 200px;
+}
+
+/* ─── Scroll Progress ─────────────────────────────────────── */
+.scroll-progress{
+  position:fixed;
+  top:0;left:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-hi));
+  z-index:1000;
+  width:0%;
+  transition:none;
+}
 
 /* ═══════════════════════════════════════════════════════════
    NAV
@@ -191,8 +214,15 @@ ul{list-style:none}
   z-index:99;
   flex-direction:column;
   gap:0.25rem;
+  transform:translateY(-10px);
+  opacity:0;
+  transition:transform var(--transition-base),opacity var(--transition-base);
 }
-.nav-mobile.open{display:flex}
+.nav-mobile.open{
+  display:flex;
+  transform:translateY(0);
+  opacity:1;
+}
 .nav-mobile .nav-link{
   display:block;
   padding:0.75rem 1rem;
@@ -355,6 +385,8 @@ ul{list-style:none}
   font-weight:600;
   transition:all var(--transition-fast);
   white-space:nowrap;
+  position:relative;
+  overflow:hidden;
 }
 .btn-primary{
   background:var(--accent);
@@ -392,6 +424,11 @@ ul{list-style:none}
   color:var(--text1);
 }
 
+/* Magnetic button effect base */
+.magnetic{
+  transition:transform 0.15s ease-out;
+}
+
 /* ═══════════════════════════════════════════════════════════
    SECTIONS
    ═══════════════════════════════════════════════════════════ */
@@ -400,6 +437,7 @@ ul{list-style:none}
   position:relative;
 }
 .section-alt{background:var(--bg-surface)}
+.section-compact{padding:3rem 1.5rem}
 .section-header{
   max-width:600px;
   margin:0 auto 3rem;
@@ -430,7 +468,37 @@ ul{list-style:none}
 }
 
 /* ═══════════════════════════════════════════════════════════
-   SERVICE CARDS — Device Screens
+   STATS
+   ═══════════════════════════════════════════════════════════ */
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+  max-width:900px;
+  margin:0 auto;
+}
+.stat-item{
+  text-align:center;
+  padding:1.5rem;
+}
+.stat-number{
+  display:block;
+  font-family:var(--font-display);
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:400;
+  color:var(--accent);
+  line-height:1.1;
+  margin-bottom:0.5rem;
+}
+.stat-label{
+  font-size:0.8rem;
+  color:var(--text3);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICE CARDS — Device Screens with 3D Tilt
    ═══════════════════════════════════════════════════════════ */
 .services-grid{
   display:grid;
@@ -438,6 +506,7 @@ ul{list-style:none}
   gap:1.25rem;
   max-width:1000px;
   margin:0 auto;
+  perspective:1000px;
 }
 .service-card{
   position:relative;
@@ -448,6 +517,8 @@ ul{list-style:none}
   overflow:hidden;
   transition:border-color var(--transition-base),transform var(--transition-base),box-shadow var(--transition-base);
   cursor:pointer;
+  transform-style:preserve-3d;
+  will-change:transform;
 }
 .service-card::before{
   content:'';
@@ -461,7 +532,6 @@ ul{list-style:none}
 .service-card:hover::before{opacity:1}
 .service-card:hover{
   border-color:var(--accent);
-  transform:translateY(-3px);
   box-shadow:0 12px 40px rgba(0,0,0,0.4),0 0 30px var(--accent-glow);
 }
 
@@ -570,6 +640,56 @@ ul{list-style:none}
 }
 
 /* ═══════════════════════════════════════════════════════════
+   DISCOUNT BANNER
+   ═══════════════════════════════════════════════════════════ */
+.discount-banner{
+  max-width:700px;
+  margin:0 auto;
+  background:linear-gradient(135deg,var(--bg-elevated),var(--bg-card));
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:1.5rem 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  position:relative;
+  overflow:hidden;
+}
+.discount-banner::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+.discount-content{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.discount-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:0.4rem;
+  padding:0.35rem 0.85rem;
+  background:var(--accent);
+  color:var(--bg);
+  font-family:var(--font-mono);
+  font-size:0.8rem;
+  font-weight:700;
+  border-radius:var(--radius-sm);
+  white-space:nowrap;
+}
+.discount-badge svg{width:16px;height:16px}
+.discount-text{
+  font-size:0.9rem;
+  color:var(--text2);
+}
+
+/* ═══════════════════════════════════════════════════════════
    BENCH LOG — Proof Module
    ═══════════════════════════════════════════════════════════ */
 .bench-log{
@@ -657,6 +777,60 @@ ul{list-style:none}
 .log-status.progress{background:rgba(245,158,11,0.12);color:var(--accent)}
 
 /* ═══════════════════════════════════════════════════════════
+   TESTIMONIALS
+   ═══════════════════════════════════════════════════════════ */
+.testimonials-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+  max-width:1000px;
+  margin:0 auto;
+}
+.testimonial-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:1.75rem;
+  transition:border-color var(--transition-base),transform var(--transition-base),box-shadow var(--transition-base);
+}
+.testimonial-card:hover{
+  border-color:var(--border-vis);
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+}
+.testimonial-stars{
+  display:flex;
+  gap:0.2rem;
+  margin-bottom:1rem;
+}
+.testimonial-stars svg{
+  width:16px;height:16px;
+  color:var(--accent);
+}
+.testimonial-text{
+  font-size:0.9rem;
+  color:var(--text2);
+  line-height:1.65;
+  margin-bottom:1.25rem;
+  font-style:italic;
+}
+.testimonial-author{
+  display:flex;
+  flex-direction:column;
+  gap:0.15rem;
+}
+.testimonial-name{
+  font-size:0.85rem;
+  font-weight:700;
+  color:var(--text1);
+}
+.testimonial-meta{
+  font-family:var(--font-mono);
+  font-size:0.7rem;
+  color:var(--text4);
+}
+
+/* ═══════════════════════════════════════════════════════════
    COMPARISON — Me vs Chain
    ═══════════════════════════════════════════════════════════ */
 .compare-table{
@@ -673,7 +847,9 @@ ul{list-style:none}
   padding:1rem 1.25rem;
   border-bottom:1px solid var(--border);
   align-items:center;
+  transition:background var(--transition-fast);
 }
+.compare-row:hover{background:rgba(245,158,11,0.02)}
 .compare-row:last-child{border-bottom:none}
 .compare-row.hdr{background:var(--bg-elevated)}
 .compare-label{
@@ -687,6 +863,52 @@ ul{list-style:none}
 }
 .compare-val.me{color:var(--accent);font-weight:600}
 .compare-val.chain{color:var(--text3)}
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICE AREA
+   ═══════════════════════════════════════════════════════════ */
+.area-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+  max-width:800px;
+  margin:0 auto;
+}
+.area-card{
+  text-align:center;
+  padding:2rem 1.5rem;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  transition:border-color var(--transition-base),transform var(--transition-base),box-shadow var(--transition-base);
+}
+.area-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+}
+.area-icon{
+  width:48px;height:48px;
+  margin:0 auto 1rem;
+  border-radius:var(--radius-md);
+  background:var(--accent-dim);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--accent);
+}
+.area-icon svg{width:22px;height:22px}
+.area-title{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--text1);
+  margin-bottom:0.35rem;
+}
+.area-desc{
+  font-size:0.85rem;
+  color:var(--text2);
+  line-height:1.55;
+}
 
 /* ═══════════════════════════════════════════════════════════
    FOOTER
@@ -731,12 +953,44 @@ ul{list-style:none}
 }
 
 /* ═══════════════════════════════════════════════════════════
+   BACK TO TOP
+   ═══════════════════════════════════════════════════════════ */
+.back-to-top{
+  position:fixed;
+  bottom:1.5rem;
+  right:1.5rem;
+  z-index:90;
+  width:44px;height:44px;
+  border-radius:50%;
+  background:var(--bg-elevated);
+  border:1px solid var(--border);
+  color:var(--text2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transform:translateY(20px);
+  transition:all var(--transition-base);
+  pointer-events:none;
+}
+.back-to-top.visible{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.back-to-top:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+  box-shadow:0 0 20px var(--accent-glow);
+}
+
+/* ═══════════════════════════════════════════════════════════
    ANIMATIONS
    ═══════════════════════════════════════════════════════════ */
 .reveal{
   opacity:0;
-  transform:translateY(24px);
-  transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1),transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  transform:translateY(30px);
+  transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.visible{
   opacity:1;
@@ -744,7 +998,7 @@ ul{list-style:none}
 }
 
 /* Stagger children */
-.stagger-children > *{transition-delay:calc(var(--i,0) * 80ms)}
+.stagger-children > *{transition-delay:calc(var(--i,0) * 100ms)}
 
 /* ═══════════════════════════════════════════════════════════
    MOBILE
@@ -756,18 +1010,39 @@ ul{list-style:none}
   .bench-ticket{transform:rotate(0);padding:1.75rem 1.25rem}
   .ticket-actions{flex-direction:column}
   .ticket-actions .btn{width:100%}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .stat-item{padding:1rem}
   .services-grid{grid-template-columns:1fr}
   .process-grid{grid-template-columns:1fr;gap:2rem}
   .process-grid::before{display:none}
   .process-step-num{margin-bottom:0.75rem}
+  .testimonials-grid{grid-template-columns:1fr}
   .compare-row{grid-template-columns:1fr;gap:0.35rem;padding:0.75rem 1rem}
   .compare-row.hdr{display:none}
+  .area-grid{grid-template-columns:1fr}
   .section{padding:4rem 1rem}
+  .section-compact{padding:2rem 1rem}
+  .grain-overlay{opacity:0.025}
 }
 
 @media (max-width:480px){
   .ticket-headline{font-size:1.5rem}
   .section-title{font-size:1.5rem}
+  .stat-number{font-size:2rem}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PREFERS REDUCED MOTION
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+  #circuitCanvas{display:none}
+  .grain-overlay{display:none}
 }
 
 /* ═══════════════════════════════════════════════════════════
