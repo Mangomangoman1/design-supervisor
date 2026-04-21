@@ -50,90 +50,16 @@
     </div>
   </nav>
 
-<!-- ═══ HERO v4 — Repair Halo ═══ -->
+<!-- ═══ HERO v5 — PCB Workbench ═══ -->
 <section class="hero" id="hero" aria-label="Hero">
-  <div class="hero-texture" aria-hidden="true"></div>
-
-  <div class="hero-grid-floor" aria-hidden="true">
-    <div class="hero-grid-lines"></div>
-  </div>
-
-  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
-
+  <canvas id="pcbCanvas" class="hero-canvas hero-canvas-pcb" aria-hidden="true"></canvas>
   <div class="hero-spotlight" id="heroSpotlight" aria-hidden="true"></div>
-
-  <div class="hero-halo" aria-hidden="true">
-    <span class="hero-halo-ring hero-halo-ring-a"></span>
-    <span class="hero-halo-ring hero-halo-ring-b"></span>
-    <span class="hero-halo-ring hero-halo-ring-c"></span>
-    <span class="hero-halo-node hero-halo-node-1"></span>
-    <span class="hero-halo-node hero-halo-node-2"></span>
-    <span class="hero-halo-node hero-halo-node-3"></span>
-    <span class="hero-halo-node hero-halo-node-4"></span>
-  </div>
-
-  <div class="hero-devices" aria-hidden="true">
-    <div class="hero-device hero-device-phone" data-parallax="0.05">
-      <span class="hero-device-label">Phone</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="5" y="2" width="14" height="20" rx="2.5"/>
-        <line x1="12" y1="18" x2="12.01" y2="18"/>
-        <circle cx="12" cy="7" r="1.5" opacity="0.4"/>
-        <path d="M7 10h10M7 13h10" opacity="0.3"/>
-      </svg>
-    </div>
-    <div class="hero-device hero-device-laptop" data-parallax="0.08">
-      <span class="hero-device-label">Laptop</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9"/>
-        <path d="M4 16h16"/>
-        <path d="M2 16l1.28 2.55a1 1 0 0 0 .9.45h15.64a1 1 0 0 0 .9-.45L22 16"/>
-        <path d="M6 9h12M6 12h8" opacity="0.3"/>
-      </svg>
-    </div>
-    <div class="hero-device hero-device-game" data-parallax="0.03">
-      <span class="hero-device-label">Console</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="6" width="20" height="12" rx="2"/>
-        <path d="M6 11h4M8 9v4"/>
-        <circle cx="15" cy="12" r="1" opacity="0.5"/>
-        <circle cx="17" cy="12" r="1" opacity="0.5"/>
-      </svg>
-    </div>
-  </div>
-
-  <canvas id="smokeCanvas" class="hero-canvas hero-canvas-smoke" aria-hidden="true"></canvas>
-  <canvas id="scopeCanvas" class="hero-canvas hero-canvas-scope" aria-hidden="true"></canvas>
-
-  <div class="hero-marquee" aria-hidden="true">
-    <div class="hero-marquee-track">
-      <span>screen repair</span>
-      <span>battery swaps</span>
-      <span>charging ports</span>
-      <span>liquid damage</span>
-      <span>laptop tune-ups</span>
-      <span>tablet fixes</span>
-      <span>game console ports</span>
-      <span>data recovery</span>
-      <span>screen repair</span>
-      <span>battery swaps</span>
-      <span>charging ports</span>
-      <span>liquid damage</span>
-      <span>laptop tune-ups</span>
-      <span>tablet fixes</span>
-      <span>game console ports</span>
-      <span>data recovery</span>
-    </div>
-  </div>
-
   <div class="hero-vignette"></div>
 
   <div class="bench-ticket" id="benchTicket">
     <div class="ticket-hologram" aria-hidden="true"></div>
     <div class="ticket-perforation"></div>
-    <div class="ticket-kicker">ONE BENCH · ONE TECH · TEXT FIRST</div>
+    <div class="ticket-kicker">LIVE PCB · ENERGY FLOW · TEXT FIRST</div>
     <div class="ticket-header">
       <span class="ticket-number">TKT-#8247</span>
       <span class="ticket-status">Open</span>
@@ -180,7 +106,7 @@
     </div>
   </div>
 </section>
-  <!-- ═══ STATS ═══ -->
+<!-- ═══ STATS ═══ -->
   <section class="section section-compact" id="stats" aria-label="Statistics">
     <div class="stats-grid">
       <div class="stat-item reveal" style="--i:0">
