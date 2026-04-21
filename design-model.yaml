@@ -1,0 +1,209 @@
+name: "Hailey Device Repair — Flagship"
+page_intent: "homepage"
+brand_truth:
+  source_type: "observed"
+  confidence: "high"
+  notes:
+    - "One-person repair shop in Hailey, Idaho"
+    - "Owner Samuel fixes everything personally"
+    - "Text-first communication, under 2hr response"
+    - "40-day warranty, same-day phone repairs"
+    - "Tagline: Don't replace it. Let me fix it."
+    - "Services: iPhone, Android, laptop, tablet, console, computer help"
+    - "Mail-in statewide Idaho"
+    - "Student & military 15% discount"
+
+philosophy: |
+  The design language treats repair as craft — not a commodity service.
+  Every element should feel like it belongs in Samuel's workshop:
+  warm surfaces, amber glow like a workbench lamp, precise typography,
+  and the repair intake ticket as the central visual metaphor.
+  The site must convert on mobile first, with the phone number visible
+  without scrolling and one clear CTA above the fold.
+
+primary_mode: "dark"
+brand_domain: "local service / device repair"
+brand_type: "content-rich"
+
+sources_used:
+  - source: "hailey-web-co"
+    purpose: "local conversion guardrails, anti-generic SMB rules"
+  - source: "frontend-design"
+    purpose: "boldness pressure, memorable aesthetic commitment"
+  - source: "color-expert"
+    purpose: "palette sanity, warm dark discipline"
+
+primitives:
+  colors:
+    warm_black: "#0c0a09"
+    warm_charcoal: "#1a1814"
+    warm_elevated: "#24201c"
+    warm_card: "#2a2622"
+    warm_input: "#3a3632"
+    warm_white: "#fafaf9"
+    warm_gray: "#a8a29e"
+    warm_gray_muted: "#78716c"
+    amber: "#f59e0b"
+    amber_dim: "rgba(245,158,11,0.12)"
+    blue: "#4f8ef7"
+    blue_dim: "rgba(79,142,247,0.12)"
+    green: "#3fb950"
+    red: "#f87171"
+
+  spacing:
+    - 0.25rem
+    - 0.5rem
+    - 1rem
+    - 1.5rem
+    - 2rem
+    - 3rem
+    - 4rem
+    - 6rem
+
+  radii:
+    - 6px
+    - 12px
+    - 16px
+    - 24px
+    - 999px
+
+tokens:
+  colors:
+    background: "#0c0a09"
+    surface1: "#1a1814"
+    surface2: "#24201c"
+    surface3: "#2a2622"
+    border: "rgba(250,250,249,0.08)"
+    border_visible: "rgba(250,250,249,0.14)"
+    text1: "#fafaf9"
+    text2: "#a8a29e"
+    text3: "#78716c"
+    text4: "#57534e"
+    accent: "#f59e0b"
+    accent_subtle: "rgba(245,158,11,0.12)"
+    accent_hover: "#fbbf24"
+    accent_glow: "rgba(245,158,11,0.2)"
+    tech: "#4f8ef7"
+    tech_subtle: "rgba(79,142,247,0.12)"
+    success: "#3fb950"
+    warning: "#f59e0b"
+    error: "#f87171"
+
+  typography:
+    display:
+      family: "'Instrument Serif', Georgia, serif"
+      weight: 400
+      line_height: 1.15
+      letter_spacing: "-0.02em"
+      notes: "Used for headlines and hero text. Italic for emphasis."
+    body:
+      family: "'DM Sans', -apple-system, sans-serif"
+      weight: 400
+      line_height: 1.65
+      letter_spacing: "0"
+      notes: "Used for all body text. Variable font 300-800."
+    mono:
+      family: "'Space Mono', monospace"
+      weight: 400
+      line_height: 1.5
+      letter_spacing: "0"
+      notes: "Used for prices, ticket numbers, technical labels."
+    label:
+      family: "'DM Sans', sans-serif"
+      weight: 600
+      size: "0.75rem"
+      letter_spacing: "0.08em"
+      text_transform: "uppercase"
+
+  spacing:
+    xs: "0.25rem"
+    sm: "0.5rem"
+    md: "1rem"
+    lg: "1.5rem"
+    xl: "2rem"
+    "2xl": "3rem"
+    "3xl": "4rem"
+    "4xl": "6rem"
+
+  radii:
+    sm: "6px"
+    md: "12px"
+    lg: "16px"
+    xl: "24px"
+    pill: "999px"
+
+  elevation:
+    sm: "0 1px 2px rgba(0,0,0,0.3)"
+    md: "0 4px 12px rgba(0,0,0,0.4)"
+    lg: "0 8px 30px rgba(0,0,0,0.5)"
+    glow: "0 0 30px rgba(245,158,11,0.12)"
+    glow_strong: "0 0 40px rgba(245,158,11,0.2)"
+
+  motion:
+    fast: "150ms cubic-bezier(0.4, 0, 0.2, 1)"
+    base: "250ms cubic-bezier(0.4, 0, 0.2, 1)"
+    slow: "400ms cubic-bezier(0.4, 0, 0.2, 1)"
+    spring: "500ms cubic-bezier(0.34, 1.56, 0.64, 1)"
+
+  hero_stage:
+    background_type: "canvas circuit traces + noise grain"
+    dominant_element: "repair intake ticket (bench ticket)"
+    text_treatment: "typewriter reveal on ticket"
+    accent_glow: "amber pulse on circuit nodes"
+
+  iconography:
+    style: "outlined, minimal"
+    source: "Material Symbols or custom SVG"
+    color: "inherit from text or accent"
+
+components:
+  button_primary:
+    background: "var(--accent)"
+    color: "#0c0a09"
+    border_radius: "var(--radius-md)"
+    padding: "0.75rem 1.5rem"
+    font_weight: 600
+    hover: "translateY(-1px), glow shadow, brightness increase"
+    active: "translateY(0), scale(0.98)"
+    notes: "Amber fill, dark text. Tactile press effect."
+
+  button_secondary:
+    background: "transparent"
+    color: "var(--text1)"
+    border: "1px solid var(--border_visible)"
+    hover: "border color becomes accent, subtle amber bg"
+
+  card:
+    background: "var(--surface2)"
+    border: "1px solid var(--border)"
+    border_radius: "var(--radius-lg)"
+    hover: "border glow, slight lift"
+    notes: "Device-screen aesthetic for service cards. Diagnostic scan-line on hover."
+
+  nav:
+    background: "rgba(12,10,9,0.85)"
+    backdrop_filter: "blur(20px)"
+    border_bottom: "1px solid var(--border)"
+    height: "64px"
+
+  proof_module:
+    type: "bench_log"
+    style: "Typewriter entries, ticket-like items, operational not decorative"
+    notes: "Recent repairs listed like a technician's log book."
+
+  hero_object:
+    type: "bench_ticket"
+    composition: "Centered, slightly tilted, with perforated top edge"
+    animation: "Typewriter text reveal, subtle float"
+    notes: "The ticket contains the headline. It IS the hero."
+
+hero_direction:
+  dominant_object: "repair intake ticket (bench ticket)"
+  composition_type: "single-object"
+  memorable_thing: "The hero is a stylized repair intake ticket that types out 'Don't replace it. Let me fix it.' against a living circuit-trace background."
+  originality_test: "pass"
+
+output_targets:
+  preview_required: true
+  component_library_required: true
+  landing_page_required: true

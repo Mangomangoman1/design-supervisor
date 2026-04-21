@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hailey Device Repair | Don't Replace It. Let Me Fix It.</title>
+  <meta name="description" content="Fast, fair device repair in Hailey, Idaho. iPhone, Android, laptop & PC repair plus computer help. Same-day service. Text-first support. 40-day warranty.">
+  <meta name="theme-color" content="#0c0a09">
+  <link rel="canonical" href="https://www.haileyrepair.com/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230c0a09'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' fill='%23f59e0b'%3E%F0%9F%94%A7%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/flagship.css">
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" id="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Hailey Device Repair Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        </svg>
+        <span>Hailey Device Repair</span>
+      </a>
+      <div class="nav-links" role="list">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#process" class="nav-link">How It Works</a>
+        <a href="#log" class="nav-link">Recent Work</a>
+        <a href="#compare" class="nav-link">Why Me</a>
+      </div>
+      <a href="tel:2083666111" class="nav-cta" aria-label="Call or text (208) 366-6111">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (208) 366-6111
+      </a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile" aria-hidden="true">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#process" class="nav-link">How It Works</a>
+      <a href="#log" class="nav-link">Recent Work</a>
+      <a href="#compare" class="nav-link">Why Me</a>
+      <a href="tel:2083666111" class="nav-cta">(208) 366-6111</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <canvas id="circuitCanvas"></canvas>
+    <div class="hero-vignette"></div>
+
+    <div class="bench-ticket">
+      <div class="ticket-perforation"></div>
+      <div class="ticket-header">
+        <span class="ticket-number">TKT-#8247</span>
+        <span class="ticket-status">Open</span>
+        <span class="ticket-date">Today</span>
+      </div>
+      <h1 class="ticket-headline">
+        Don't replace it.<br><em class="ticket-typewriter" id="typewriter"></em>
+      </h1>
+      <p class="ticket-sub">
+        Fast, fair repair for iPhone, Android, laptop & PC in Hailey, Idaho. 
+        Most phone fixes same day. Text me — I reply in under 2 hours.
+      </p>
+      <div class="ticket-actions">
+        <a href="tel:2083666111" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Text or Call
+        </a>
+        <a href="#services" class="btn btn-secondary">See Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section" id="services" aria-labelledby="services-title">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">What I Fix</span>
+      <h2 class="section-title" id="services-title">Repairs &amp; Computer Help</h2>
+      <p class="section-sub">From cracked screens to slow computers — one person, one bench, honest work.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card reveal" style="--i:0">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3 class="service-card-title">iPhone Repair</h3>
+        <p class="service-card-desc">Screen, battery, charging port, buttons, water damage. Same-day for most models.</p>
+        <div class="service-card-price">From $79</div>
+      </article>
+      <article class="service-card reveal" style="--i:1">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3 class="service-card-title">Android Repair</h3>
+        <p class="service-card-desc">Samsung Galaxy, Google Pixel, OnePlus. Screens, batteries, ports &amp; more.</p>
+        <div class="service-card-price">From $69</div>
+      </article>
+      <article class="service-card reveal" style="--i:2">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg>
+        </div>
+        <h3 class="service-card-title">Laptop &amp; PC</h3>
+        <p class="service-card-desc">Mac &amp; Windows. Screens, keyboards, batteries, storage upgrades, virus removal.</p>
+        <div class="service-card-price">From $99</div>
+      </article>
+      <article class="service-card reveal" style="--i:3">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3 class="service-card-title">iPad &amp; Tablet</h3>
+        <p class="service-card-desc">iPad, Galaxy Tab, Amazon Fire. Cracked screens, batteries, charging issues.</p>
+        <div class="service-card-price">From $79</div>
+      </article>
+      <article class="service-card reveal" style="--i:4">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M6 15h4"/><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M14 10h4m-2-2v4"/></svg>
+        </div>
+        <h3 class="service-card-title">Game Console</h3>
+        <p class="service-card-desc">Switch drift, PS5 HDMI, Xbox, Steam Deck. Controller &amp; port repairs.</p>
+        <div class="service-card-price">From $49</div>
+      </article>
+      <article class="service-card reveal" style="--i:5">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        </div>
+        <h3 class="service-card-title">Computer Help</h3>
+        <p class="service-card-desc">Slow PC, crashes, startup issues, malware. Remote or in-person support.</p>
+        <div class="service-card-price">From $75</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS ═══ -->
+  <section class="section section-alt" id="process" aria-labelledby="process-title">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">The Process</span>
+      <h2 class="section-title" id="process-title">How It Works</h2>
+      <p class="section-sub">No appointments needed. Just text me and we'll get it sorted.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal" style="--i:0">
+        <div class="process-step-num">1</div>
+        <h3 class="process-step-title">Text Me</h3>
+        <p class="process-step-desc">Describe the issue or send a photo. I reply within 2 hours.</p>
+      </div>
+      <div class="process-step reveal" style="--i:1">
+        <div class="process-step-num">2</div>
+        <h3 class="process-step-title">Diagnosis</h3>
+        <p class="process-step-desc">Free assessment. Firm quote before any work begins.</p>
+      </div>
+      <div class="process-step reveal" style="--i:2">
+        <div class="process-step-num">3</div>
+        <h3 class="process-step-title">Repair</h3>
+        <p class="process-step-desc">You approve, I start. Text updates throughout.</p>
+      </div>
+      <div class="process-step reveal" style="--i:3">
+        <div class="process-step-num">4</div>
+        <h3 class="process-step-title">Done</h3>
+        <p class="process-step-desc">Pick up or shipped back. 40-day warranty on everything.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BENCH LOG ═══ -->
+  <section class="section" id="log" aria-labelledby="log-title">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">The Bench</span>
+      <h2 class="section-title" id="log-title">Recent Repairs</h2>
+      <p class="section-sub">Real jobs from the workbench. No fake reviews — just the log.</p>
+    </div>
+    <div class="bench-log reveal">
+      <div class="bench-log-header">
+        <span class="bench-log-title">Repair Log</span>
+        <span class="bench-log-live">Live</span>
+      </div>
+      <div class="bench-log-list">
+        <div class="log-entry">
+          <span class="log-time">Today</span>
+          <span class="log-device">iPhone 14 Pro</span>
+          <span class="log-issue">Screen replacement</span>
+          <span class="log-status done">Done</span>
+        </div>
+        <div class="log-entry">
+          <span class="log-time">Today</span>
+          <span class="log-device">MacBook Air M2</span>
+          <span class="log-issue">Battery swap</span>
+          <span class="log-status done">Done</span>
+        </div>
+        <div class="log-entry">
+          <span class="log-time">Yesterday</span>
+          <span class="log-device">Samsung S24</span>
+          <span class="log-issue">Charging port</span>
+          <span class="log-status done">Done</span>
+        </div>
+        <div class="log-entry">
+          <span class="log-time">Yesterday</span>
+          <span class="log-device">Nintendo Switch</span>
+          <span class="log-issue">Joy-Con drift</span>
+          <span class="log-status progress">In Progress</span>
+        </div>
+        <div class="log-entry">
+          <span class="log-time">Apr 19</span>
+          <span class="log-device">Dell XPS 15</span>
+          <span class="log-issue">SSD upgrade</span>
+          <span class="log-status done">Done</span>
+        </div>
+        <div class="log-entry">
+          <span class="log-time">Apr 18</span>
+          <span class="log-device">iPad 10th Gen</span>
+          <span class="log-issue">Cracked screen</span>
+          <span class="log-status done">Done</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPARISON ═══ -->
+  <section class="section section-alt" id="compare" aria-labelledby="compare-title">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">The Difference</span>
+      <h2 class="section-title" id="compare-title">Me vs. The Chains</h2>
+      <p class="section-sub">One person. One bench. No call centers, no upsells, no surprises.</p>
+    </div>
+    <div class="compare-table reveal">
+      <div class="compare-row hdr">
+        <span class="compare-label"></span>
+        <span class="compare-val me">Hailey Device Repair</span>
+        <span class="compare-val chain">Chain Stores</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">Diagnosis</span>
+        <span class="compare-val me">Always free</span>
+        <span class="compare-val chain">$20–50 fee</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">Response Time</span>
+        <span class="compare-val me">Under 2 hours</span>
+        <span class="compare-val chain">24–72 hours</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">Who Fixes It</span>
+        <span class="compare-val me">Me, personally</span>
+        <span class="compare-val chain">Whoever's on shift</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">Communication</span>
+        <span class="compare-val me">Direct text</span>
+        <span class="compare-val chain">Call a hotline</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">Can't Fix It?</span>
+        <span class="compare-val me">Honest assessment</span>
+        <span class="compare-val chain">Still pay diagnostic</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="section" aria-label="Contact">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Get Started</span>
+      <h2 class="section-title">Text Me What's Broken</h2>
+      <p class="section-sub">(208) 366-6111 — I reply fast, diagnose free, and quote before I touch anything.</p>
+    </div>
+    <div class="text-center reveal">
+      <a href="tel:2083666111" class="btn btn-primary" style="font-size:1.1rem;padding:1rem 2rem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (208) 366-6111
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Hailey Device Repair</div>
+      <p class="footer-tagline">Don't replace it. Let me fix it.</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#log">Recent Work</a>
+        <a href="#compare">Why Me</a>
+      </nav>
+      <p class="footer-copy">© 2025 Hailey Device Repair. Hailey, Idaho. Built by hand.</p>
+    </div>
+  </footer>
+
+  <script src="js/flagship.js"></script>
+</body>
+</html>
